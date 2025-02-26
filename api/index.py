@@ -5,8 +5,9 @@ from supabase import create_client, Client
 
 app = Flask(__name__)
 
-# if not SUPABASE_URL or not SUPABASE_KEY:
-#     raise ValueError("Supabase URL and Anon Key must be set as environment variables (SUPABASE_URL, SUPABASE_ANON_KEY)")
+# Supabase configuration -  IMPORTANT: Use environment variables for security in production
+SUPABASE_URL = os.environ.get("SUPABASE_URL")
+SUPABASE_KEY = os.environ.get("SUPABASE_ANON_KEY")
 
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
@@ -17,7 +18,6 @@ def get_api_key_from_supabase():
         if response.data and len(response.data) > 0:
             # Assuming you have only one API key in the table or want to use the first one
             # If you have multiple keys, you might need to adjust the query to select based on some criteria
-            print(response.data[0]["api_key"])
             return response.data[0]["api_key"]
         else:
             print("Warning: No API key found in Supabase table 'api_keys'.") # Log this for debugging
