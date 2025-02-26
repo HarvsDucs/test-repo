@@ -5,8 +5,8 @@ from supabase import create_client, Client
 
 app = Flask(__name__)
 
-if not SUPABASE_URL or not SUPABASE_KEY:
-    raise ValueError("Supabase URL and Anon Key must be set as environment variables (SUPABASE_URL, SUPABASE_ANON_KEY)")
+# if not SUPABASE_URL or not SUPABASE_KEY:
+#     raise ValueError("Supabase URL and Anon Key must be set as environment variables (SUPABASE_URL, SUPABASE_ANON_KEY)")
 
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
